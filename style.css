@@ -1,0 +1,163 @@
+:root {
+  height: 100%;
+
+  --font-family: Roboto, "Segoe UI";
+
+  --bg-0: rgb(255, 255, 255);
+  --bg-1: rgb(247, 247, 247);
+  --bg-2: rgb(239, 239, 239);
+  --bg-3: rgb(231, 231, 231);
+  --bg-4: rgb(223, 223, 223);
+  --bg-5: rgb(215, 215, 215);
+  --bg-6: rgb(207, 207, 207);
+  --bg-7: rgb(199, 199, 199);
+
+  --fg-0: rgb(31, 31, 31);
+  --fg-1: rgb(39, 39, 39);
+  --fg-2: rgb(47, 47, 47);
+  --fg-3: rgb(55, 55, 55);
+  --fg-4: rgb(63, 63, 63);
+  --fg-5: rgb(71, 71, 71);
+  --fg-6: rgb(79, 79, 79);
+  --fg-7: rgb(87, 87, 87);
+
+  --primary: #0b57cf;
+  --on-primary: var(--bg-0);
+
+  --red: #800;
+  --blue: #008;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-0: rgb(31, 31, 31);
+    --bg-1: rgb(39, 39, 39);
+    --bg-2: rgb(47, 47, 47);
+    --bg-3: rgb(55, 55, 55);
+    --bg-4: rgb(63, 63, 63);
+    --bg-5: rgb(71, 71, 71);
+    --bg-6: rgb(79, 79, 79);
+    --bg-7: rgb(87, 87, 87);
+
+    --fg-0: rgb(255, 255, 255);
+    --fg-1: rgb(247, 247, 247);
+    --fg-2: rgb(239, 239, 239);
+    --fg-3: rgb(231, 231, 231);
+    --fg-4: rgb(223, 223, 223);
+    --fg-5: rgb(215, 215, 215);
+    --fg-6: rgb(207, 207, 207);
+    --fg-7: rgb(199, 199, 199);
+
+    --primary: #a8c8fb;
+
+    --red: #f88;
+    --blue: #88f;
+  }
+}
+
+body {
+  height: 100%;
+  margin: 0;
+  font-family: var(--font-family);
+  font-size: 13px;
+  background: var(--bg-0);
+  color: var(--fg-0);
+}
+
+button {
+  font-family: var(--font-family);
+  color: unset;
+  background: unset;
+  border: unset;
+}
+
+button:hover {
+  background: #8882;
+}
+
+select {
+  color: unset;
+  background: unset;
+  padding: 4px;
+  border-radius: 8px;
+}
+
+option {
+  background: var(--bg-0);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+
+.logo {
+  font-family: "Audiowide";
+  font-weight: unset;
+}
+
+.logo > .blue {
+  color: var(--primary);
+}
+
+.button {
+  align-self: center;
+  background: var(--primary);
+  color: var(--on-primary);
+  height: 36px;
+  padding-inline: 18px;
+  border-radius: 18px;
+}
+
+.padding-1 {
+  padding: 4px;
+}
+
+.padding-2 {
+  padding: 8px;
+}
+
+.padding-3 {
+  gap: 12px;
+}
+
+.padding-4 {
+  padding: 16px;
+}
+
+.flex-h,
+.flex-v {
+  display: flex;
+}
+
+.flex-v {
+  flex-direction: column;
+}
+
+.gap-1 {
+  gap: 4px;
+}
+
+.gap-2 {
+  gap: 8px;
+}
+
+.gap-3 {
+  gap: 12px;
+}
+
+.gap-4 {
+  gap: 16px;
+}
+
+.grow,
+.grow-all > * {
+  flex-grow: 1;
+}
+
+.button:hover {
+}
