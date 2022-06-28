@@ -1,0 +1,349 @@
+@font-face {
+  font-family: "Audiowide";
+  src: url("./fonts/Audiowide-Regular.ttf") format("woff2");
+}
+
+:root {
+  --background: #fff;
+  --border: #ddd;
+  --text: #222;
+  --disabled: #aaa;
+  --hover: #2221;
+  --hover-2: #fff7;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #222;
+    --border: #444;
+    --text: #fff;
+    --disabled: #777;
+    --hover: #fff1;
+    --hover-2: #2227;
+  }
+}
+
+:root,
+body {
+  height: 100%;
+}
+
+body {
+  background: var(--background);
+  margin: auto;
+  flex-direction: column;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+body,
+button,
+select {
+  font-family: Segoe WPC, Segoe UI, sans-serif;
+  font-size: 13px;
+  color: var(--text);
+}
+
+button, select {
+  background: unset;
+}
+
+body,
+main,
+div:not(.monaco-editor *) {
+  display: flex;
+  flex-shrink: 0;
+  box-sizing: border-box;
+}
+
+button {
+  border: unset;
+  -webkit-app-region: no-drag;
+  outline: unset;
+}
+
+button:hover,
+button.active {
+  background: var(--hover);
+}
+
+button:disabled {
+  color: var(--disabled);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: unset;
+  font-weight: unset;
+}
+
+textarea {
+  background: unset;
+  border: unset;
+  width: 100%;
+  outline: unset;
+  resize: unset;
+  font-family: "Consolas";
+  color: var(--text);
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--hover);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--hover);
+  border-radius: 4px;
+}
+
+.title {
+  background: var(--hover);
+  height: 32px;
+  justify-content: center;
+  padding-inline: 12px;
+}
+
+.tabs {
+  flex-direction: column;
+}
+
+.tab-buttons {
+  background: var(--hover);
+  height: 32px;
+}
+
+.tab-buttons > button {
+  padding-inline: 12px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.tab-buttons > button:hover {
+  background: var(--hover-2);
+}
+
+.tab-buttons > button.active {
+  background: var(--background);
+}
+
+.tab-contents {
+  flex: 1;
+}
+
+#backdrop {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  opacity: 0.5;
+}
+
+#backdrop[hidden] {
+  display: none;
+}
+
+#splash {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--background);
+  border-radius: 16px;
+  width: 512px;
+  padding: 32px 48px;
+  flex-direction: column;
+  gap: 32px;
+}
+
+#splash[hidden] {
+  display: none;
+}
+
+#splash h1 {
+  font-size: 3rem;
+}
+
+#settings {
+  gap: 16px;
+}
+
+#settings > select {
+  flex: 1;
+  padding: 8px 12px;
+  border: 1px solid #888;
+}
+
+#splash h3 {
+  align-self: flex-end;
+}
+
+#splash button {
+  font-size: 1.5rem;
+  background: #0090f1;
+  color: var(--background);
+  align-self: center;
+  height: 48px;
+  width: 192px;
+  border-radius: 24px;
+  margin-top: auto;
+}
+
+.logo {
+  font-family: "Audiowide";
+}
+
+#title-bar {
+  height: 32px;
+  gap: 64px;
+  align-items: stretch;
+  padding-left: 4px;
+  -webkit-app-region: drag;
+  border-bottom: 1px solid var(--border);
+}
+
+#title-bar .logo {
+  padding-top: 1px;
+}
+
+#title-bar > div {
+  flex: 1;
+  align-items: center;
+}
+
+#window-appicon {
+  display: flex;
+  padding-inline: 8px;
+}
+
+#menu {
+  align-self: stretch;
+}
+
+#menu > button {
+  padding-inline: 8px;
+}
+
+#window-title {
+  justify-content: center;
+}
+
+main {
+  flex: 1;
+  flex-direction: column;
+  position: relative;
+}
+
+#content {
+  flex: 1;
+}
+
+#toolbar {
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border);
+}
+
+#toolbar > div {
+  padding: 4px 12px;
+  gap: 4px;
+}
+
+#left-toolbar > button {
+  border-radius: 18px;
+  padding: 8px;
+}
+
+#right-toolbar > button {
+  font-size: 11px;
+  border-radius: 18px;
+  padding-inline: 12px;
+  border: 1px solid var(--border);
+}
+
+#activity-bar {
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid var(--border);
+}
+
+#activity-bar > button {
+  width: 48px;
+  height: 48px;
+  font-size: 24px;
+}
+
+#sidebar {
+  flex-direction: column;
+  border-right: 1px solid var(--border);
+  min-width: 160px;
+}
+
+#sidebar div {
+  flex-direction: column;
+}
+
+#sidebar button {
+  text-align: left;
+  padding: 4px 12px;
+}
+
+#sidebar > * > button {
+  padding-left: 24px;
+}
+
+#content-2 {
+  width: 0;
+  flex: 1;
+  flex-direction: column;
+}
+
+#editor {
+  height: 0;
+  flex: 1;
+}
+
+#editor > .tab-contents {
+  height: 0;
+}
+
+#panel {
+  border-top: 1px solid var(--border);
+}
+
+#panel > .content {
+  flex: 1;
+}
+
+.gutter {
+  background: var(--background);
+}
+
+.gutter {
+  background: var(--background);
+  box-sizing: border-box;
+}
+
+.gutter.gutter-horizontal {
+  background: var(--background);
+  cursor: e-resize;
+  border-inline: 1px solid var(--background);
+}
+
+.gutter.gutter-vertical {
+  background: var(--background);
+  cursor: n-resize;
+  border-block: 1px solid var(--background);
+}
+
+.gutter:hover {
+  background: #0090f1;
+  border: unset;
+}

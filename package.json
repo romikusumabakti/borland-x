@@ -1,67 +1,37 @@
 {
   "name": "borland-x",
   "version": "1.0.0",
-  "description": "Bring Borland to the future",
-  "main": "main.js",
-  "scripts": {
-    "start": "electron-forge start",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "package": "electron-forge package",
-    "make": "electron-forge make"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/romikusumabakti/borland-x.git"
-  },
+  "description": "C/C++ Integrated Development Environment",
   "keywords": [
-    "borland"
+    "c",
+    "c++",
+    "ide",
+    "pub",
+    "pasim"
   ],
-  "author": "Romi Kusuma Bakti",
-  "license": "MIT",
+  "homepage": "https://github.com/divdikpub/borland-x#readme",
   "bugs": {
-    "url": "https://github.com/romikusumabakti/borland-x/issues"
+    "url": "https://github.com/divdikpub/borland-x/issues",
+    "email": "divdik.pub@gmail.com"
   },
-  "homepage": "https://github.com/romikusumabakti/borland-x#readme",
+  "license": "MIT",
+  "author": {
+    "name": "Divisi Pendidikan PUB",
+    "email": "divdik.pub@gmail.com",
+    "url": "http://portal.pubpasim.org/"
+  },
+  "main": "main.js",
+  "repository": "https://github.com/divdikpub/borland-x.git",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-packager ./ BorlandX --platform=win32 --arch=x64 --out=./build --overwrite"
+  },
   "devDependencies": {
-    "@electron-forge/cli": "^6.0.0-beta.61",
-    "@electron-forge/maker-deb": "^6.0.0-beta.61",
-    "@electron-forge/maker-rpm": "^6.0.0-beta.61",
-    "@electron-forge/maker-squirrel": "^6.0.0-beta.61",
-    "@electron-forge/maker-zip": "^6.0.0-beta.61",
-    "electron": "^16.0.5",
-    "webpack-cli": "^4.9.1"
+    "electron": "^19.0.4",
+    "electron-packager": "^15.5.1"
   },
   "dependencies": {
-    "@codemirror/basic-setup": "^0.19.1",
-    "@codemirror/lang-cpp": "^0.19.1",
-    "electron-squirrel-startup": "^1.0.0",
-    "webpack": "^5.65.0"
-  },
-  "config": {
-    "forge": {
-      "packagerConfig": {},
-      "makers": [
-        {
-          "name": "@electron-forge/maker-squirrel",
-          "config": {
-            "name": "borland_x"
-          }
-        },
-        {
-          "name": "@electron-forge/maker-zip",
-          "platforms": [
-            "darwin"
-          ]
-        },
-        {
-          "name": "@electron-forge/maker-deb",
-          "config": {}
-        },
-        {
-          "name": "@electron-forge/maker-rpm",
-          "config": {}
-        }
-      ]
-    }
+    "monaco-editor": "^0.33.0",
+    "split.js": "^1.6.5"
   }
 }

@@ -1,89 +1,54 @@
-const { app, BrowserWindow, Menu, ipcMain, nativeTheme } = require("electron");
+const {
+  app,
+  BrowserWindow,
+  ipcMain,
+  nativeTheme,
+  dialog,
+} = require("electron");
+const fs = require("fs");
 const path = require("path");
 
-const template = [
-  {
-    label: "File",
-    submenu: [
-      {
-        label: "Buka file...",
-      },
-      {
-        label: "Buka folder...",
-      },
-      {
-        role: "close",
-        label: "Keluar",
-      },
-    ],
+const titleBarOverlay = {
+  light: {
+    color: "#fff",
+    symbolColor: "#222",
+    height: 30,
   },
-  {
-    label: "Edit",
-    submenu: [
-      { role: "undo" },
-      { role: "redo" },
-      { type: "separator" },
-      { role: "cut" },
-      { role: "copy" },
-      { role: "paste" },
-      { role: "delete" },
-      { type: "separator" },
-      { role: "selectAll" },
-    ],
-  },
-  {
-    label: "View",
-    submenu: [
-      { role: "reload" },
-      { role: "forceReload" },
-      { role: "toggleDevTools" },
-      { type: "separator" },
-      { role: "resetZoom" },
-      { role: "zoomIn" },
-      { role: "zoomOut" },
-      { type: "separator" },
-      { role: "togglefullscreen" },
-    ],
-  },
-  {
-    label: "Build",
-    submenu: [
-      {
-        label: "Run",
-      },
-    ],
-  },
-  {
-    role: "help",
-    submenu: [
-      {
-        label: "Documentation",
-        click: async () => {
-          const { shell } = require("electron");
-          await shell.openExternal("https://electronjs.org");
-        },
-      },
-      { type: "separator" },
-      {
-        label: "About",
-        click: async () => {
-          const { shell } = require("electron");
-          await shell.openExternal("https://electronjs.org");
-        },
-      },
-    ],
-  },
-];
+  dark: {
+    color: "#222",
+    symbolColor: "#fff",
+    height: 30,
+  }
+}
 
-const menu = Menu.buildFromTemplate(template);
-Menu.setApplicationMenu(menu);
+function createWindow() {
+  const window = new BrowserWindow({
+    width: 800,
+    height: 600,
+    webPreferences: {
+      preload: path.join(__dirname, "preload.js"),
+      // nodeIntegration: true,
+      // contextIsolation: false,
+      enableWebSQL: false,
+      spellcheck: false
+    },
+    titleBarStyle: "hidden",
+    titleBarOverlay: nativeTheme.shouldUseDarkColors ? titleBarOverlay.dark : titleBarOverlay.light,
+  });
 
-app.whenReady().then(() => {
+  window.loadFile("index.html");
+
+  // window.webContents.openDevTools()
+  
+  ipcMain.handle("dark-mode:check", () => nativeTheme.shouldUseDarkColors)
+
   ipcMain.handle("dark-mode:toggle", () => {
     if (nativeTheme.shouldUseDarkColors) {
       nativeTheme.themeSource = "light";
+      window.setTitleBarOverlay(titleBarOverlay.light);
     } else {
       nativeTheme.themeSource = "dark";
+      window.setTitleBarOverlay(titleBarOverlay.dark);
     }
     return nativeTheme.shouldUseDarkColors;
   });
@@ -92,31 +57,30 @@ app.whenReady().then(() => {
     nativeTheme.themeSource = "system";
   });
 
-  const main = new BrowserWindow({
-    width: 800,
-    height: 600,
-    show: false,
-    webPreferences: {
-      preload: path.join(__dirname, "preload.js"),
-    },
-    frame: false,
-  });
-  main.loadFile("./main/index.html");
-
-  const splash = new BrowserWindow({
-    parent: main,
-    width: 450,
-    height: 310,
-    frame: false,
-    resizable: false,
-    show: false,
+  ipcMain.handle("dialog:open-file", async () => {
+    const { filePaths } = await dialog.showOpenDialog();
+    return filePaths[0];
   });
 
-  main.once("ready-to-show", () => {
-    main.show();
-    splash.loadFile("./splash/index.html");
-    splash.once("ready-to-show", () => {
-      splash.show();
-    });
+  ipcMain.handle(
+    "dialog:open-folder",
+    async () =>
+      await dialog.showOpenDialog({
+        properties: ["openDirectory"],
+      })
+  );
+
+  ipcMain.handle("file:read", (_, path) => fs.readFileSync(path, "utf8"));
+}
+
+app.whenReady().then(() => {
+  createWindow();
+
+  app.on("activate", function () {
+    if (BrowserWindow.getAllWindows().length === 0) createWindow();
   });
+});
+
+app.on("window-all-closed", function () {
+  if (process.platform !== "darwin") app.quit();
 });

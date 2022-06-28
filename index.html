@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'"
+    />
+    <link href="./styles.css" rel="stylesheet" />
+    <title>Borland X</title>
+  </head>
+  <body>
+    <div id="title-bar">
+      <div>
+        <div id="window-appicon" class="logo">BX</div>
+        <div id="menu">
+          <button>File</button>
+          <button>Edit</button>
+          <button>Selection</button>
+          <button>View</button>
+          <button>Go</button>
+          <button>Run</button>
+          <button>Terminal</button>
+          <button>Help</button>
+        </div>
+      </div>
+      <div id="window-title">
+        <div>
+          main.c - latihan-1 -&nbsp;
+          <div class="logo">Borland X</div>
+        </div>
+      </div>
+      <div id="window-controls"></div>
+    </div>
+    <main>
+      <div id="toolbar">
+        <div id="left-toolbar"></div>
+        <div id="right-toolbar">
+          <button id="theme-toggle">Light theme</button>
+        </div>
+      </div>
+      <div id="content">
+        <div id="activity-bar">
+          <button class="codicon codicon-files active"></button>
+          <button class="codicon codicon-search"></button>
+          <button class="codicon codicon-source-control"></button>
+          <button class="codicon codicon-debug-alt"></button>
+        </div>
+        <div id="sidebar">
+          <div class="title">Explorer</div>
+          <button>latihan-1</button>
+          <div>
+            <button>conio.c</button>
+            <button class="active">main.c</button>
+          </div>
+        </div>
+        <div id="content-2">
+          <div id="editor" class="tabs">
+            <div class="tab-buttons">
+              <button class="active">main.c</button>
+              <button>conio.c</button>
+            </div>
+            <div class="tab-contents"></div>
+          </div>
+          <div id="panel" class="tabs">
+            <div class="tab-buttons"></div>
+            <div class="tab-contents"></div>
+          </div>
+        </div>
+      </div>
+      <div id="status-bar"></div>
+      <div id="backdrop"></div>
+      <div id="splash">
+        <header>
+          <h1 class="logo">Borland X</h1>
+          <h2>C/C++ Integrated Development Environment</h2>
+        </header>
+        <h3><strong>© 2022 Divisi Pendidikan PUB</strong></h3>
+        <div id="settings">
+          <select>
+            <option>Light theme</option>
+          </select>
+          <select>
+            <option>English</option>
+          </select>
+        </div>
+        <button id="start-button">Start</button>
+      </div>
+    </main>
+    <script src="./node_modules/monaco-editor/min/vs/loader.js"></script>
+    <script src="./renderer.js"></script>
+  </body>
+</html>
