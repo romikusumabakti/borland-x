@@ -28,7 +28,7 @@
   },
   "devDependencies": {
     "electron": "^19.0.4",
-    "electron-packager": "^15.5.1"
+    "electron-packager": "^15.5.2"
   },
   "dependencies": {
     "monaco-editor": "^0.33.0",
